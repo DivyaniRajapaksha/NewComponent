@@ -1,7 +1,5 @@
-package com.gateway.apiRetriever;
+package com.gatewayBridge.apiRetriever;
 
-
-import java.io.IOException;
 
 public interface ArtifactRetriever {
     /**

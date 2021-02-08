@@ -1,4 +1,4 @@
-package com.gateway.utils;
+package com.gatewayBridge.utils;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;

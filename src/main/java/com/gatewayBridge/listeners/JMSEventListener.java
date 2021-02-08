@@ -1,12 +1,14 @@
-package com.gateway.listeners;
+package com.gatewayBridge.listeners;
 
 
-import com.gateway.constants.APIConstants;
-import com.gateway.models.DeployAPIInGatewayEvent;
-import com.gateway.apiRetriever.*;
+import com.gatewayBridge.constants.APIConstants;
+import com.gatewayBridge.dto.GatewayAPIDTO;
+import com.gatewayBridge.models.DeployAPIInGatewayEvent;
+import com.gatewayBridge.apiRetriever.*;
 import com.google.gson.Gson;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -36,7 +38,7 @@ public class JMSEventListener implements MessageListener {
         }
     }
     /**
-     * Method used to retrieve events and invoke apiRretriver
+     * Method used to retrieve events and invoke apiRetriever
      *
      * @return
      * @throws NamingException
@@ -62,15 +64,21 @@ public class JMSEventListener implements MessageListener {
 
 
                 if ((APIConstants.EventType.DEPLOY_API_IN_GATEWAY.name().equals((String) map.get("eventType")))) {
+
                     log.debug("Gatewaylabels" + gatewayEvent.getGatewayLabels());
+
                     String gatewayLabel = gatewayEvent.getGatewayLabels().iterator().next();
                     String gatewayRuntimeArtifact = artifactRetriever.retrieveArtifact(gatewayEvent.getApiId(), gatewayLabel, "Publish");
-                    log.debug("GatewayRuntimeArtifacts" + gatewayRuntimeArtifact);
+                    if (StringUtils.isNotEmpty(gatewayRuntimeArtifact)) {
+                        GatewayAPIDTO gatewayAPIDTO = new Gson().fromJson(gatewayRuntimeArtifact, GatewayAPIDTO.class);
+                        log.debug("GatewayAPIDTO" + gatewayAPIDTO);
+                    }
+
                 }
 
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            log.debug("Exception" + e);
         }
     }
 

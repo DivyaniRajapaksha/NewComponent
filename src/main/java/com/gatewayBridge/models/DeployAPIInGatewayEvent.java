@@ -1,4 +1,4 @@
-package com.gateway.models;
+package com.gatewayBridge.models;
 
 import java.util.Set;
 

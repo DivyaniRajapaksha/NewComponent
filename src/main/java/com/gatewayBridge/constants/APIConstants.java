@@ -1,4 +1,4 @@
-package com.gateway.constants;
+package com.gatewayBridge.constants;
 
 
 import java.io.File;

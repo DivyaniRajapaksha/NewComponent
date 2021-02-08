@@ -1,7 +1,7 @@
-package com.gateway.apiRetriever;
+package com.gatewayBridge.apiRetriever;
 
-import com.gateway.listeners.JMSEventListener;
-import com.gateway.utils.APIUtil;
+import com.gatewayBridge.listeners.JMSEventListener;
+import com.gatewayBridge.utils.APIUtil;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.CloseableHttpResponse;
